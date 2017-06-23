@@ -1,7 +1,6 @@
 {
     "name": "florianmoser/bedrock-deployer",
     "description": "Deployer recipes for Roots Bedrock",
-    "type": "Deployer recipes",
     "require": {
         "deployer/deployer": "5.0.*"
     },
