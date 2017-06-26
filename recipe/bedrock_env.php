@@ -13,14 +13,6 @@
 namespace Deployer;
 
 /*
- * Runs Composer install for Bedrock
- */
-desc( 'Installing Bedrock vendors' );
-task( 'bedrock:vendors', function () {
-    run( 'cd {{release_path}} && {{env_vars}} {{bin/composer}} {{composer_options}}' );
-} );
-
-/*
  * Tries to copy .env file from previous release to current release.
  * If not available, the .env file is created while prompting the
  * user for credentials.
