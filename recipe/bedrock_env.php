@@ -81,7 +81,7 @@ DB_PASSWORD='{$db_pass}'
 DB_HOST='{$db_host}'
 WP_ENV='{$wp_env}'
 WP_HOME='{$wp_home}'
-WP_SITEURL=\${WP_HOME}/wp
+WP_SITEURL='{$wp_home}/wp'
 
 EOL;
 
