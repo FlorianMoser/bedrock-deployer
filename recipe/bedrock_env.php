@@ -64,12 +64,13 @@ task( 'bedrock:env', function () {
     writeln( '<comment>Generating .env file</comment>' );
 
     // Ask for credentials
-    $db_name = ask( get( 'stage' ) . ' server WordPress DB name: ' );
-    $db_user = ask( get( 'stage' ) . ' server WordPress DB user: ' );
-    $db_pass = ask( get( 'stage' ) . ' server WordPress DB password: ' );
-    $db_host = ask( get( 'stage' ) . ' server WordPress DB host: ' );
-    $wp_env  = ask( get( 'stage' ) . ' server WordPress DB ENV (one of "development", "staging" or "production"): ' );
-    $wp_home = ask( get( 'stage' ) . ' server WordPress DB home url (ie http://domain.com): ' );
+    $db_name = ask( get( 'stage' ) . ' server WordPress DB name' );
+    $db_user = ask( get( 'stage' ) . ' server WordPress DB user' );
+    $db_pass = askHiddenResponse( get( 'stage' ) . ' server WordPress DB password' );
+    $db_host = ask( get( 'stage' ) . ' server WordPress DB host', '127.0.0.1' );
+    $wp_env  = askChoice( get( 'stage' ) . ' server ENV', ['development' => 'development', 'staging' => 'staging', 'production' => 'production'], 'staging' );
+    $wp_prot = askChoice( get( 'stage' ) . ' server protocol', ['http' => 'http', 'https' => 'https'], 'http' );
+    $wp_domain = ask( get( 'stage' ) . ' server WordPress domain (ie domain.com)' );
 
 
     ob_start();
@@ -80,8 +81,9 @@ DB_USER='{$db_user}'
 DB_PASSWORD='{$db_pass}'
 DB_HOST='{$db_host}'
 WP_ENV='{$wp_env}'
-WP_HOME='{$wp_home}'
-WP_SITEURL='{$wp_home}/wp'
+WP_HOME='{$wp_prot}://{$wp_domain}'
+WP_SITEURL='{$wp_prot}://{$wp_domain}/wp'
+DOMAIN_CURRENT_SITE='{$wp_domain}'
 
 EOL;
 
