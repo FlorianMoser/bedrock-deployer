@@ -12,7 +12,7 @@ namespace Deployer;
 
 desc( 'Runs composer install on remote server' );
 task( 'sage:vendors', function () {
-    run( 'cd {{release_path}}/{{theme_path}} && {{env_vars}} {{bin/composer}} {{composer_options}}' );
+    run( 'cd {{release_path}}/{{theme_path}} && {{bin/composer}} {{composer_options}}' );
 } );
 
 desc( 'Compiles the theme locally for production' );
