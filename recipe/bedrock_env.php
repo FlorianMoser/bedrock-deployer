@@ -84,6 +84,7 @@ WP_ENV='{$wp_env}'
 WP_HOME='{$wp_prot}://{$wp_domain}'
 WP_SITEURL='{$wp_prot}://{$wp_domain}/wp'
 DOMAIN_CURRENT_SITE='{$wp_domain}'
+PROTOCOL='{$wp_prot}'
 
 EOL;
 
