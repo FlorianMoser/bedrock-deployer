@@ -22,7 +22,6 @@ task( 'sage:compile', function () {
 
 desc( 'Updates remote assets with local assets' );
 task( 'sage:upload_assets', function () {
-    run( 'rm -rf {{current_path}}/{{theme_path}}/dist' );
     upload( '{{local_root}}/{{theme_path}}/dist', '{{release_path}}/{{theme_path}}' );
 } );
 
