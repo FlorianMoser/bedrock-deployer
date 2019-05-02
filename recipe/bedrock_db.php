@@ -25,7 +25,7 @@ use Dotenv;
  * @return false|string
  */
 $getLocalEnv = function () {
-    $localEnv = new Dotenv\Dotenv( get( 'local_root' ), '.env' );
+    $localEnv = Dotenv\Dotenv::create( get( 'local_root' ), '.env' );
     $localEnv->overload();
     $localUrl = getenv( 'WP_HOME' );
 
@@ -48,7 +48,7 @@ $getLocalEnv = function () {
 $getRemoteEnv = function () {
     $tmpEnvFile = get( 'local_root' ) . '/.env-remote';
     download( get( 'current_path' ) . '/.env', $tmpEnvFile );
-    $remoteEnv = new Dotenv\Dotenv( get( 'local_root' ), '.env-remote' );
+    $remoteEnv = Dotenv\Dotenv::create( get( 'local_root' ), '.env-remote' );
     $remoteEnv->overload();
     $remoteUrl = getenv( 'WP_HOME' );
     // Cleanup tempfile
