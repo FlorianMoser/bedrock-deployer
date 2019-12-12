@@ -22,7 +22,7 @@ task( 'sage:compile', function () {
 
 desc( 'Removes the /dist folder on the destination' );
 task( 'sage:clear_assets', function () {
-    run( 'rm -rf {{current_path}}/{{theme_path}}/dist' );
+    run( 'rm -rf {{release_path}}/{{theme_path}}/dist' );
 } );
 
 desc( 'Updates remote assets with local assets, but without deleting previous assets on destination' );
