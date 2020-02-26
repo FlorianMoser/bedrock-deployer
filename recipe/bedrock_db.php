@@ -25,8 +25,8 @@ use Dotenv;
  * @return false|string
  */
 $getLocalEnv = function () {
-    $localEnv = Dotenv\Dotenv::create( get( 'local_root' ), '.env' );
-    $localEnv->overload();
+    $localEnv = Dotenv\Dotenv::createMutable( get( 'local_root' ), '.env' );
+    $localEnv->load();
     $localUrl = getenv( 'WP_HOME' );
 
     if ( ! $localUrl ) {
@@ -48,8 +48,8 @@ $getLocalEnv = function () {
 $getRemoteEnv = function () {
     $tmpEnvFile = get( 'local_root' ) . '/.env-remote';
     download( get( 'current_path' ) . '/.env', $tmpEnvFile );
-    $remoteEnv = Dotenv\Dotenv::create( get( 'local_root' ), '.env-remote' );
-    $remoteEnv->overload();
+    $remoteEnv = Dotenv\Dotenv::createImmutable( get( 'local_root' ), '.env-remote' );
+    $remoteEnv->load();
     $remoteUrl = getenv( 'WP_HOME' );
     // Cleanup tempfile
     runLocally( "rm {$tmpEnvFile}" );

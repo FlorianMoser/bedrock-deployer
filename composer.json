@@ -3,7 +3,7 @@
     "description": "Deployer recipes for Roots Bedrock",
     "require": {
         "deployer/deployer": ">=6.0",
-        "vlucas/phpdotenv": "^3.0.0"
+        "vlucas/phpdotenv": "^4.1"
     },
     "license": "MIT",
     "authors": [
