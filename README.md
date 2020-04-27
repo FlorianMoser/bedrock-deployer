@@ -25,6 +25,10 @@ These are the available recipes:
 ## Bedrock DB
 Provides tasks to export the database from the server and import it to your development machine and vice versa.
 
+There is a recipe for Trellis / Vagrant as well as a recipe for Valet+ environments.
+
+### Trellis / Vagrant environment
+
 Requirements:
 
 - Vagrant **running** on your local machine (or Trellis, of course)
@@ -48,6 +52,28 @@ Example:
 set( 'local_root', dirname( __FILE__ ) );
 set( 'vagrant_dir', dirname( __FILE__ ) . '/../trellis' );
 set( 'vagrant_root', '/srv/www/domain.com/current' );
+````
+
+### Valet+ environment
+
+Requirements:
+
+- Bedrock running on [Valet+](https://github.com/weprovide/valet-plus)
+
+Load into your deploy.php file with:
+
+````php
+require 'vendor/florianmoser/bedrock-deployer/recipe/bedrock_valetplus_db.php';
+````
+
+Requires these Deployer environment variables to be set:
+
+- local_root: Absolute path to website root directory on local host machine
+
+Example:
+
+````php
+set( 'local_root', dirname( __FILE__ ) );
 ````
 
 ### Task pull:db
