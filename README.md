@@ -178,7 +178,7 @@ Provides tasks to deploy Roots Sage theme.
 
 Requirements:
 
-- Roots Sage 9.0.*
+- Roots Sage 9.0.* or 10.0.*
 
 Load into your deploy.php file with:
 
