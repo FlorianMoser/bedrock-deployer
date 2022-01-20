@@ -34,6 +34,11 @@ set( 'sync_dirs', [
 	dirname( __FILE__ ) . '/web/app/uploads/' => '{{deploy_path}}/shared/web/app/uploads/',
 ] );
 
+// With Sage 9 you will have to change the distribution files path to /dist
+//set('sage/dist_path', '/dist');
+
+// With Sage 9 you will have to change the build script command to "build:production"
+//set('sage/build_command', 'build:production');
 
 // Hosts
 

@@ -10,6 +10,13 @@
 
 namespace Deployer;
 
+// Set default path of distribution folder. This is /public with Sage 10,
+// and /dist with Sage 9
+set('sage/dist_path', '/public');
+
+// Build script used. Will be "build" with Sage 10 or "build:production" with Sage 9
+set('sage/build_command', 'build');
+
 desc( 'Runs composer install on remote server' );
 task( 'sage:vendors', function () {
     run( 'cd {{release_path}}/{{theme_path}} && {{bin/composer}} {{composer_options}}' );
@@ -17,17 +24,17 @@ task( 'sage:vendors', function () {
 
 desc( 'Compiles the theme locally for production' );
 task( 'sage:compile', function () {
-    runLocally( "cd {{local_root}}/{{theme_path}} && yarn run build:production" );
+    runLocally( "cd {{local_root}}/{{theme_path}} && yarn run {{sage/build_command}}" );
 } );
 
-desc( 'Removes the /dist folder on the destination' );
+desc( 'Removes the folder for distributed files on the destination' );
 task( 'sage:clear_assets', function () {
-    run( 'rm -rf {{release_path}}/{{theme_path}}/dist' );
+    run( 'rm -rf {{release_path}}/{{theme_path}}{{sage/dist_path}}' );
 } );
 
 desc( 'Updates remote assets with local assets, but without deleting previous assets on destination' );
 task( 'sage:upload_assets_only', function () {
-    upload( '{{local_root}}/{{theme_path}}/dist', '{{release_path}}/{{theme_path}}' );
+    upload( '{{local_root}}/{{theme_path}}{{sage/dist_path}}', '{{release_path}}/{{theme_path}}' );
 } );
 
 desc( 'Updates remote assets with local assets' );
