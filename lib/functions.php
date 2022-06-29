@@ -13,7 +13,7 @@ if (!isset($getLocalEnv)) {
     $getLocalEnv = function () {
         $localEnv = Dotenv\Dotenv::createMutable(get('local_root'), '.env');
         $localEnv->load();
-        $localUrl = getenv('WP_HOME');
+        $localUrl = $_ENV['WP_HOME'];
 
         if (!$localUrl) {
             writeln("<error>WP_HOME variable not found in local .env file</error>");
@@ -38,7 +38,7 @@ if (!isset($getRemoteEnv)) {
         download(get('current_path') . '/.env', $tmpEnvFile);
         $remoteEnv = Dotenv\Dotenv::createMutable(get('local_root'), '.env-remote');
         $remoteEnv->load();
-        $remoteUrl = getenv('WP_HOME');
+        $remoteUrl = $_ENV['WP_HOME'];
         // Cleanup tempfile
         runLocally("rm {$tmpEnvFile}");
 
