@@ -19,7 +19,7 @@ set('sage/build_command', 'build');
 
 desc( 'Runs composer install on remote server' );
 task( 'sage:vendors', function () {
-    run( 'cd {{release_path}}/{{theme_path}} && {{bin/composer}} {{composer_options}}' );
+    run( 'cd {{release_path}}/{{theme_path}} && {{bin/composer}} {{composer_action}} {{composer_options}}' );
 } );
 
 desc( 'Compiles the theme locally for production' );
