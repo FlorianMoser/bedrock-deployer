@@ -11,5 +11,5 @@ namespace Deployer;
  */
 desc( 'Installing Bedrock vendors' );
 task( 'bedrock:vendors', function () {
-    run( 'cd {{release_path}} && {{bin/composer}} {{composer_options}}' );
+    run( 'cd {{release_path}} && {{bin/composer}} {{composer_action}} {{composer_options}}' );
 } );
