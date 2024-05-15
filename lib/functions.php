@@ -35,7 +35,9 @@ if (!isset($getLocalEnv)) {
 if (!isset($getRemoteEnv)) {
     $getRemoteEnv = function () {
         $tmpEnvFile = get('local_root') . '/.env-remote';
-        download(get('current_path') . '/.env', $tmpEnvFile);
+        download(get('current_path') . '/.env', $tmpEnvFile, [
+            'flags' => '-L'
+        ]);
         $remoteEnv = Dotenv\Dotenv::createMutable(get('local_root'), '.env-remote');
         $remoteEnv->load();
         $remoteUrl = $_ENV['WP_HOME'];
