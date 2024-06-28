@@ -11,9 +11,10 @@ use Dotenv;
  */
 if (!isset($getLocalEnv)) {
     $getLocalEnv = function () {
-        $localEnv = Dotenv\Dotenv::createMutable(get('local_root'), '.env');
-        $localEnv->load();
-        $localUrl = $_ENV['WP_HOME'];
+        $envFile = realpath(get('local_root')) . '/.env';
+        $content = file_get_contents($envFile);
+        $envData = Dotenv\Dotenv::parse($content);
+        $localUrl = $envData['WP_HOME'];
 
         if (!$localUrl) {
             writeln("<error>WP_HOME variable not found in local .env file</error>");
@@ -34,13 +35,15 @@ if (!isset($getLocalEnv)) {
  */
 if (!isset($getRemoteEnv)) {
     $getRemoteEnv = function () {
-        $tmpEnvFile = get('local_root') . '/.env-remote';
+        $tmpEnvFile = realpath(get('local_root')) . '/.env-remote';
         download(get('current_path') . '/.env', $tmpEnvFile, [
             'flags' => '-L'
         ]);
-        $remoteEnv = Dotenv\Dotenv::createMutable(get('local_root'), '.env-remote');
-        $remoteEnv->load();
-        $remoteUrl = $_ENV['WP_HOME'];
+
+        $content = file_get_contents($tmpEnvFile);
+        $envData = Dotenv\Dotenv::parse($content);
+        $remoteUrl = $envData['WP_HOME'];
+
         // Cleanup tempfile
         runLocally("rm {$tmpEnvFile}");
 
